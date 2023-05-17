@@ -101,8 +101,10 @@ for i in range(0, 10):
     else:
         result[n] += 1
 
-num = 0
-for key in result:
-    num += 1
+# num = 0
+# for key in result:
+#     num += 1
 
-print(num)
+# print(num)
+
+
