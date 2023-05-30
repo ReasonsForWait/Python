@@ -11,15 +11,15 @@
 
 # str_list = ["u", "u", "r", "r"]
 
-# def s(str_list):
-#     for i, v in enumerate(str_list):
-#         if v == "l":
-#             return str_list[:i]
+def solution1(str_list):
+    for i, v in enumerate(str_list):
+        if v == "l":
+            return str_list[:i]
         
-#         if v == "r":
-#             return str_list[i + 1:]
+        if v == "r":
+            return str_list[i + 1:]
         
-#     return []
+    return []
 
 
 # s(str_list)
@@ -39,12 +39,7 @@
 # 000123과 같이 0이 선행하는 경우는 없습니다.
 # 문자열에 자연수가 없는 경우 0을 return 해주세요.
 
-# TODO
-# import re
-
-# my_string = "aAb1B2cC34oOp"
-# for i in my_string:
-#   print(re.search('\d', i))
+# TODO 못푼 문제
 
 #-------------------------
 
@@ -63,7 +58,7 @@
 
 # 배열 A, B가 주어질 때 최종적으로 누적된 최솟값을 return 하는 solution 함수를 완성해 주세요.
 
-def s(A, B):
+def solution2(A, B):
     A = sorted(A)
     B = sorted(B)[::-1]
     
@@ -75,7 +70,7 @@ def s(A, B):
 
 # s([1,2,3,2], [1,3,6,5])
 
-def solution(operations):
+def solution3(operations):
     queue = []
     for i in operations:
         word, num = list(i.split())
@@ -111,7 +106,7 @@ def solution(operations):
 # 1 ≤ arr의 길이 ≤ 1,000,000
 # 1 ≤ arr의 원소의 값 ≤ 100
 
-def solution1(arr):
+def solution4(arr):
     chk = True
     count = 0
     while(chk):
@@ -149,7 +144,7 @@ def solution1(arr):
 # 1 ≤ n ≤ my_str의 길이
 # my_str은 알파벳 소문자, 대문자, 숫자로 이루어져 있습니다.
 
-def solution3(my_str, n):
+def solution5(my_str, n):
     result = []
     while(len(my_str) != 0):
         result.append(my_str[:n])
@@ -166,38 +161,39 @@ def solution3(my_str, n):
 # 덧셈으로 이루어진 다항식 polynomial이 매개변수로 주어질 때, 동류항끼리 더한 결괏값을 문자열로 return 하도록 solution 함수를 완성해보세요. 
 # 같은 식이라면 가장 짧은 수식을 return 합니다.
 
-# 실패작
+# TODO 실패작 고치기
 
-# def solution4(polynomial):
-#     x = 0
-#     num = 0
-#     arr = polynomial.split()[::2]
-#     for i in arr:
-#         if "x" in i:
-#             print(i)
-#             if i[0] == "x":
-#                 x += 1
-#             elif i[0] == "-":
-#                 x -= int(i[1:len(i) - 1])
-#             else:
-#                 x += int(i[:len(i) - 1])
-#         else:
-#             print(i)
-#             if i[0] == "-":
-#                 num -= int(i[1:])
-#             else:
-#                 num += int(i)
+def solution6(polynomial):
+    x = 0
+    num = 0
+    arr = polynomial.split()[::2]
+    for i in arr:
+        if "x" in i:
+            print(i)
+            if i[0] == "x":
+                x += 1
+            elif i[0] == "-":
+                x -= int(i[1:len(i) - 1])
+            else:
+                x += int(i[:len(i) - 1])
+        else:
+            print(i)
+            if i[0] == "-":
+                num -= int(i[1:])
+            else:
+                num += int(i)
         
-#     if num != 0:
-#         return str(x) + "x + " + str(num)
-#     else:
-#         return str(x) + "x"
+    if num != 0:
+        return str(x) + "x + " + str(num)
+    else:
+        return str(x) + "x"
 
 # print(solution4("-3x + -7 + x"))
 
 #----------------------------------------------------------------------------------------
 
 # 뒤에서 5등까지
+# TODO 문제 1
 # https://school.programmers.co.kr/learn/courses/30/lessons/181853
 # 문제
 
@@ -208,7 +204,63 @@ def solution3(my_str, n):
 # 6 ≤ num_list의 길이 ≤ 30
 # 1 ≤ num_list의 원소 ≤ 100
 
-def solution(num_list):
+def solution7(num_list):
     return sorted(num_list)[:5]
 
-solution([1,34,5,77,9,12])
+solution7([1,34,5,77,9,12])
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+
+# 안전지대
+
+# 문제 설명
+# 다음 그림과 같이 지뢰가 있는 지역과 지뢰에 인접한 위, 아래, 좌, 우 대각선 칸을 모두 위험지역으로 분류합니다.
+
+# 지뢰는 2차원 배열 board에 1로 표시되어 있고 board에는 지뢰가 매설 된 지역 1과, 지뢰가 없는 지역 0만 존재합니다.
+# 지뢰가 매설된 지역의 지도 board가 매개변수로 주어질 때, 안전한 지역의 칸 수를 return하도록 solution 함수를 완성해주세요.
+
+# 제한사항
+# board는 n * n 배열입니다.
+# 1 ≤ n ≤ 100
+# 지뢰는 1로 표시되어 있습니다.
+# board에는 지뢰가 있는 지역 1과 지뢰가 없는 지역 0만 존재합니다.
+
+# TODO 좀더 간단히 고쳐보기
+
+def solution8(board):
+    n = len(board)
+    for i in range(n):
+        for j in range(n):
+            if board[i][j] == 1:
+                if i != 0 and j != 0: 
+                    if board[i-1][j-1] != 1:
+                        board[i-1][j-1] = 2
+                if i != 0:
+                    if board[i-1][j] != 1:
+                        board[i-1][j] = 2
+                if i != 0 and j != n-1:
+                    if board[i-1][j+1] != 1:
+                        board[i-1][j+1] = 2
+                if j != 0:
+                    if board[i][j-1] != 1:
+                        board[i][j-1] = 2
+                if j != n-1:
+                    if board[i][j+1] != 1:
+                        board[i][j+1] = 2
+                if i != n-1 and j != 0:
+                    if board[i+1][j-1] != 1:
+                        board[i+1][j-1] = 2
+                if i != n-1:
+                    if board[i+1][j] != 1:
+                        board[i+1][j] = 2
+                if i != n-1 and j != n-1:
+                    if board[i+1][j+1] != 1:
+                        board[i+1][j+1] = 2
+    
+    count = 0
+    for i in range(n):
+        for j in range(n):
+            if board[i][j] == 0:
+                count += 1
+                
+    return count
