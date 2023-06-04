@@ -190,6 +190,33 @@ def solution6(polynomial):
 
 # print(solution4("-3x + -7 + x"))
 
+# JS로 구현성공
+
+# function solution(polynomial) {
+#     let arr = polynomial.split(" ");
+#     let x = 0;
+#     let num = 0;
+#     for (let i = 0; i < arr.length; i += 2) {
+#         if (arr[i].includes("x")) {
+#             if(arr[i].length == 1){
+#                 x += 1
+#             } else {
+#                 x += +arr[i].slice(0, -1);
+#             }
+#         } else {
+#                 num += +arr[i];
+#             }
+#         }
+    
+#     if (x != 0 && num != 0) {
+#         return x == 1 ? `x + ${num}` : `${x}x + ${num}`;
+#     } else if (x != 0 && num == 0) {
+#         return x == 1 ? `x` : `${x}x`
+#     } else if (x == 0 && num != 0) {
+#         return `${num}`
+#     }
+# }
+
 #----------------------------------------------------------------------------------------
 
 # 뒤에서 5등까지
@@ -334,6 +361,8 @@ def solution10(rank, attendance):
 # 구명보트의 무게 제한은 40kg 이상 240kg 이하입니다.
 # 구명보트의 무게 제한은 항상 사람들의 몸무게 중 최댓값보다 크게 주어지므로 사람들을 구출할 수 없는 경우는 없습니다.
 
+# TODO 고치기
+
 def solution11(people, limit):
     count = 0
     while(len(people) != 0):
@@ -344,7 +373,7 @@ def solution11(people, limit):
                 break
             else:
                 weight += people.pop()
-                
+
             print(weight)
             
         count += 1
