@@ -51,3 +51,35 @@ SELECT 이름, LENGTH(이름) AS NameLength FROM EMP
 
 -- 18. 사원 이름과 커미션을 출력하되, 커미션이 책정되지 않은 사원의  커미션은 'no commission'으로 출력하라.
 SELECT 이름, ISNULL(커미션, 'no commission') FROM EMP
+
+-- 19. 10번 부서 소속 사원중에서 커미션을 받는 사원의 수를 출력하라.
+SELECT COUNT(커미션) FROM EMP WHERE 부서번호 = 10
+
+-- 20. 부서별 평균 급여가 2000이상인 부서번호와 부서별 평균급여를 출력하라.
+SELECT 부서번호, AVG(급여) FROM EMP GROUP BY 부서번호 HAVING AVG(급여) >= 2000
+
+-- 21. 부서별 최대급여와 최소급여를 구하는데 평균급여가 2000 이상인 부서만 출력하라.
+SELECT 부서번호, MAX(급여), MIN(급여) FROM EMP GROUP BY 부서번호 HAVING AVG(급여) >= 2000
+
+-- 22. 부서별 직책당 급여의 합계를 구하되 중간에 부서별 급여의 합계를 중간 합산하여 출력하라.
+SELECT 부서번호, 직책, SUM(급여) FROM EMP GROUP BY 부서번호, 직책 WITH ROLLUP
+
+-- 23. 뉴욕에서 근무하는 사원의 이름과 급여를 출력하라.
+SELECT e.ename, e.sal
+FROM emp e INNER JOIN dept d
+ON e.deptno = d.DEPTNO
+WHERE d.loc = 'NEW YORK';
+
+-- 24. ACCUNTING 부서 소속 사원의 이름과 입사일을 출력
+SELECT e.ename, e.hiredate
+FROM emp e INNER JOIN dept d
+ON e.deptno = d.DEPTNO
+WHERE d.DNAME = 'ACCOUNTING';
+
+-- 25. 직급이 MANAGER인 사원의 이름, 부서명을 출력
+SELECT e.ename, d.dname
+FROM emp e INNER JOIN dept d
+ON e.deptno = d.DEPTNO
+WHERE e.job = 'MANAGER';
+
+-- SELECT절의 문법 순서 = SELECT - FROM - WHERE - GROUP BY - HAVING - ORDER BY
