@@ -82,4 +82,26 @@ FROM emp e INNER JOIN dept d
 ON e.deptno = d.DEPTNO
 WHERE e.job = 'MANAGER';
 
+-- 26. SCOTT의 급여와 동일하거나 더 많이 받는 사원 명과 급여를 출력
+SELECT ename, sal
+FROM emp
+WHERE sal >= (SELECT sal FROM emp WHERE ename = 'scott');
+
+-- 27. dallas에서 근무하는 사원의 이름, 부서번호를 출력
+SELECT e.ename, d.deptno
+FROM emp e INNER JOIN dept d
+ON e.deptno = d.deptno
+WHERE d.LOC = 'DALLAS';
+
+-- 28. SALES 부서에서 근무하는 모든 사원의 이름과 급여를 출력
+SELECT e.ENAME, e.SAL
+FROM emp e INNER JOIN dept d
+ON e.DEPTNO = e.DEPTNO
+WHERE d.dname = 'SALES';
+
+-- 29. 직속상관이 KING인 사원의 이름과 급여를 출력
+SELECT ename, sal
+FROM emp
+WHERE deptno = (SELECT deptno FROM emp WHERE ename = 'KING');
+
 -- SELECT절의 문법 순서 = SELECT - FROM - WHERE - GROUP BY - HAVING - ORDER BY
