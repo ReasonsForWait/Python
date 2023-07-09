@@ -698,3 +698,46 @@ def solution23(numlist, n):
             numlist.remove(n - i)
             
     return result
+
+#------------------------------------------------------------------------------------------------------------------------------
+
+# 연속된 수의 합
+
+# 문제 설명
+# 연속된 세 개의 정수를 더해 12가 되는 경우는 3, 4, 5입니다. 두 정수 num과 total이 주어집니다. 
+# 연속된 수 num개를 더한 값이 total이 될 때, 정수 배열을 오름차순으로 담아 return하도록 solution함수를 완성해보세요.
+
+# 2중 반복문 때문에 별로 좋지않음 바꿔보기
+
+def solution24(num, total):
+    for j in range(-100, 100):
+        result = []
+        for i in range(j, j + num):
+            result.append(i)
+            
+        if sum(result) == total:
+            return result
+        
+#--------------------------------------------------------------------------------------------------
+
+# 겹치는 선분의 길이
+
+# 문제 설명
+# 선분 3개가 평행하게 놓여 있습니다. 
+# 세 선분의 시작과 끝 좌표가 [[start, end], [start, end], [start, end]] 형태로 들어있는 2차원 배열 lines가 매개변수로 주어질 때, 
+# 두 개 이상의 선분이 겹치는 부분의 길이를 return 하도록 solution 함수를 완성해보세요.
+
+def solution25(lines):
+    result = [0] * 200
+    count = 0
+    for i in lines:
+        for j in range(i[0] + 100, i[1] + 100):
+            result[j] += 1
+    
+    for i in result:
+        if i >= 2:
+            count += 1
+            
+    return count
+
+#-----------------------------------------------------------------------------
