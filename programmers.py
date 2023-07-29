@@ -785,33 +785,35 @@ def solution26(i):
 
 # 고치기
 
+def findPrime(num):
+    arr = []
+    # 2부터 num의 제곱근까지의 숫자 중에서 소수를 찾아낸다.
+    for i in range(2, int(num**0.5) + 1):
+        while num % i == 0:
+            arr.append(i)
+            num //= i
+    if num > 1:
+        arr.append(num)
+    return arr
+
 def solution27(a, b):
-    a_arr = []
-    b_arr = []
-    for i in range(a, 1, -1):
-        if a % i == 0:
-            a_arr.append(i)
-    
-    for i in range(b, 1, -1):
-        if b % i == 0:
-            b_arr.append(i)
-    
-    common = set(a_arr) & set(b_arr)
-    if len(common) == 0:
-        for i in range(b, 1, -1):
-            if b % i == 0:
-                if i != 2 or i != 5:
-                    return 2
-                else:
-                    return 1
-    else:
-        for i in range(b // max(common), 1, -1):
-            if (b // max(common)) % i == 0:
-                if i != 2 or i != 5:
-                    return 2
-                else:
-                    return 1
+    a_arr = findPrime(a)
+    b_arr = findPrime(b)
                 
+    for i, v in enumerate(a_arr):
+        for j, t in enumerate(b_arr):
+            if v == t:
+                a_arr.pop(i)
+                b_arr.pop(j)
+                break
+
+    for i in b_arr:
+        if i == 2 or i == 5:
+            return 1
+        else:
+            return 2
+
+print(solution27(12, 21))
 #----------------------------------------------------------------------------
 
 # 간단한 식 계산하기
