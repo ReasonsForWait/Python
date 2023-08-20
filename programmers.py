@@ -943,3 +943,131 @@ def solution31(board, moves):
                 result += 2
                 
     return result
+
+#--------------------------------------------------------------
+
+# 음양 더하기
+# 문제 설명
+# 어떤 정수들이 있습니다. 이 정수들의 절댓값을 차례대로 담은 정수 배열 absolutes와 이 정수들의 부호를 차례대로 담은 불리언 배열 signs가 매개변수로 주어집니다. 실제 정수들의 합을 구하여 return 하도록 solution 함수를 완성해주세요.
+
+# 제한사항
+# absolutes의 길이는 1 이상 1,000 이하입니다.
+# absolutes의 모든 수는 각각 1 이상 1,000 이하입니다.
+# signs의 길이는 absolutes의 길이와 같습니다.
+# signs[i] 가 참이면 absolutes[i] 의 실제 정수가 양수임을, 그렇지 않으면 음수임을 의미합니다.
+
+def solution32(absolutes, signs):
+    result = 0
+    for i, v in enumerate(signs):
+        if v:
+            result += absolutes[i]
+        else:
+            result -= absolutes[i]
+    
+    return result
+
+#----------------------------------------------------------------------
+
+# 숫자 문자열과 영단어
+# 문제 설명
+
+# 네오와 프로도가 숫자놀이를 하고 있습니다. 네오가 프로도에게 숫자를 건넬 때 일부 자릿수를 영단어로 바꾼 카드를 건네주면 프로도는 원래 숫자를 찾는 게임입니다.
+
+# 다음은 숫자의 일부 자릿수를 영단어로 바꾸는 예시입니다.
+
+# 1478 → "one4seveneight"
+# 234567 → "23four5six7"
+# 10203 → "1zerotwozero3"
+# 이렇게 숫자의 일부 자릿수가 영단어로 바뀌어졌거나, 혹은 바뀌지 않고 그대로인 문자열 s가 매개변수로 주어집니다. s가 의미하는 원래 숫자를 return 하도록 solution 함수를 완성해주세요.
+
+# 참고로 각 숫자에 대응되는 영단어는 다음 표와 같습니다.
+
+def solution33(s):
+    number = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+    for i in range(len(number)):
+        s = s.replace(number[i], str(i))
+    
+    return int(s)
+
+#-----------------------------------------------------------------
+
+# 추억 점수
+
+# 문제 설명
+# 사진들을 보며 추억에 젖어 있던 루는 사진별로 추억 점수를 매길려고 합니다. 사진 속에 나오는 인물의 그리움 점수를 모두 합산한 값이 해당 사진의 추억 점수가 됩니다. 예를 들어 사진 속 인물의 이름이 ["may", "kein", "kain"]이고 각 인물의 그리움 점수가 [5점, 10점, 1점]일 때 해당 사진의 추억 점수는 16(5 + 10 + 1)점이 됩니다. 다른 사진 속 인물의 이름이 ["kali", "mari", "don", "tony"]이고 ["kali", "mari", "don"]의 그리움 점수가 각각 [11점, 1점, 55점]]이고, "tony"는 그리움 점수가 없을 때, 이 사진의 추억 점수는 3명의 그리움 점수를 합한 67(11 + 1 + 55)점입니다.
+
+# 그리워하는 사람의 이름을 담은 문자열 배열 name, 각 사람별 그리움 점수를 담은 정수 배열 yearning, 각 사진에 찍힌 인물의 이름을 담은 이차원 문자열 배열 photo가 매개변수로 주어질 때, 사진들의 추억 점수를 photo에 주어진 순서대로 배열에 담아 return하는 solution 함수를 완성해주세요.
+
+# 제한사항
+# 3 ≤ name의 길이 = yearning의 길이≤ 100
+# 3 ≤ name의 원소의 길이 ≤ 7
+# name의 원소들은 알파벳 소문자로만 이루어져 있습니다.
+# name에는 중복된 값이 들어가지 않습니다.
+# 1 ≤ yearning[i] ≤ 100
+# yearning[i]는 i번째 사람의 그리움 점수입니다.
+# 3 ≤ photo의 길이 ≤ 100
+# 1 ≤ photo[i]의 길이 ≤ 100
+# 3 ≤ photo[i]의 원소(문자열)의 길이 ≤ 7
+# photo[i]의 원소들은 알파벳 소문자로만 이루어져 있습니다.
+# photo[i]의 원소들은 중복된 값이 들어가지 않습니다.
+
+def solution34(name, yearning, photo):
+    answer = []
+    point = dict(zip(name, yearning))
+    for i in photo:
+        point_sum = 0
+        for j in i:
+            if j in point:
+                point_sum += point[j]
+                
+        answer.append(point_sum)
+        
+    return answer
+
+#-----------------------------------------------------
+
+def bubbleSort(l):
+    idx = len(l) - 1            # 어떤 인덱스까지 아직 정렬되지 않았는지를 기록. 초기값: 배열의 마지막 인덱스
+    sorted = False              # 배열의 정렬 여부 기록
+
+    while not sorted:           # 배열이 정렬 될때까지 반복
+        sorted = True
+        for i in range(idx):    # 첫 인덱스부터 아직 정렬되지 않은 인덱스까지 반복
+            if l[i] > i[i+1]:   # 왼쪽의 값이 오른쪽의 값보다 크면 교환
+                sorted = False
+                l[i], l[i+1] = l[i+1], l[i]
+
+        idx -= 1
+
+    return l
+
+def selectionSort(l):
+    idx = 0
+    lower = 0
+    while idx < len(l):
+        for i in range(idx, len(l)):
+            if l[lower] > l[i]:
+                lower = i
+
+        l[idx], l[lower] = l[lower], l[idx]
+        idx += 1
+        print(l)
+    
+    return l
+
+
+arr = [3,5,2,6,7,1,4]
+selectionSort(arr)
+
+def insertionSort(l):
+    for i in range(1, len(l)):
+        tmp = l[i]
+        idx = i      # 현재 인덱스 저장
+
+        while idx > 0 and l[idx-1] > tmp:
+            l[idx] = l[idx-1]
+            idx -= 1
+
+        l[idx] = tmp
+
+    return l
