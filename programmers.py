@@ -1085,3 +1085,61 @@ def solution34(n):
         while answer % 3 == 0 or '3' in str(answer):
             answer += 1
     return answer
+
+#----------------------------------------------------------------------------------------------
+
+# 이상한 문자 만들기
+# 문제 설명
+# 문자열 s는 한 개 이상의 단어로 구성되어 있습니다. 각 단어는 하나 이상의 공백문자로 구분되어 있습니다. 각 단어의 짝수번째 알파벳은 대문자로, 홀수번째 알파벳은 소문자로 바꾼 문자열을 리턴하는 함수, solution을 완성하세요.
+
+# 제한 사항
+# 문자열 전체의 짝/홀수 인덱스가 아니라, 단어(공백을 기준)별로 짝/홀수 인덱스를 판단해야합니다.
+# 첫 번째 글자는 0번째 인덱스로 보아 짝수번째 알파벳으로 처리해야 합니다.
+
+def solution35(s):
+    result = []
+    count = 0
+    for i in s:
+        if i.isalpha():
+            if count % 2 == 0:
+                result.append(i.upper())
+            else:
+                result.append(i.lower())
+                
+            count += 1
+                
+        else:
+            result.append(i)
+            count = 0
+    
+    return "".join(result)
+
+#------------------------------------------------------------------------------------------------
+
+# 로또의 최고 순위와 최저 순위
+# 문제 설명
+# 로또 6/45(이하 '로또'로 표기)는 1부터 45까지의 숫자 중 6개를 찍어서 맞히는 대표적인 복권입니다. 아래는 로또의 순위를 정하는 방식입니다.
+
+def solution36(lottos, win_nums):
+    zero_count = 0
+    count = 0
+    for i in lottos:
+        if i == 0:
+            zero_count += 1
+    
+    for i in lottos:
+        for j in win_nums:
+            if i == j:
+                count += 1
+                
+    max_rate = 7 - (zero_count + count)
+    if zero_count == 6: return [1, 6]
+    
+    if count == 0:
+        min_rate = 6 - count
+        max_rate = 6 - (zero_count + count)
+    else:
+        min_rate = 7 - count
+        max_rate = 7 - (zero_count + count)
+    
+    return [max_rate, min_rate]
